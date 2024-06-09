@@ -168,6 +168,7 @@ nav ul {
   display: flex;
   align-items: center;
   list-style-type: none;
+  cursor: pointer;
 }
 nav li {
   padding: 0 10px;
@@ -175,8 +176,14 @@ nav li {
 }
 
 li:hover {
-  color: #b1663c;
+  color: #000;
+  font-weight: bold;
 }
+nav a {
+  text-decoration: none;
+  color: black;
+}
+
 #introduction {
   display: flex;
   align-items: center;
@@ -207,7 +214,7 @@ li:hover {
 .filterGallery {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 15px;
   margin-bottom: 2em;
 }
 
@@ -219,6 +226,8 @@ li:hover {
   color: #1d6154;
   font-size: 16px;
   padding: 9px 20px;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .filterGallery-btn:hover,
@@ -236,6 +245,9 @@ li:hover {
 
 .gallery img {
   width: 100%;
+}
+.figureHidden {
+  display: none;
 }
 #contact {
   width: 50%;
