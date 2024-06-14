@@ -250,7 +250,7 @@ nav a {
   display: none;
 }
 #contact {
-  width: 50%;
+  width: 40%;
   margin: auto;
 }
 #contact > * {
@@ -280,6 +280,12 @@ nav a {
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
+.password_forgotten {
+  display: flex;
+  justify-content: center;
+  color: #000;
+}
+
 input[type="submit"] {
   font-family: "Syne";
   font-weight: 700;
@@ -294,5 +300,5 @@ input[type="submit"] {
 footer nav ul {
   display: flex;
   justify-content: flex-end;
-  margin: 2em;
+  margin: 0.8em;
 }
