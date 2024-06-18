@@ -1,13 +1,19 @@
 //********Variables******//
 const gallery = document.querySelector(".gallery");
+const containerFiltres = document.querySelector(".container-filtres");
 
-//*****Récupération des travaux******//
+//*****Récupération des travaux et récupération catégories******//
 
 async function getWorks() {
   const response = await fetch("http://localhost:5678/api/works");
   return await response.json();
 }
 getWorks();
+
+async function fetchCategory() {
+  const requete = await fetch("http://localhost:5678/api/categories");
+  return requete.json();
+}
 
 //*****Afficher les travaux dans le Dom****//
 async function displayWorks() {
@@ -25,14 +31,26 @@ async function displayWorks() {
 }
 displayWorks();
 
-//masque les figures non demandés (filtres) en activant le "display:none"
-function filterWorksToGallery(category) {
-  const figures = document.querySelectorAll(".gallery figure");
-  for (i = 0; i < figures.length; i++) {
-    if (figures[i].className.includes(category)) {
-      figures[i].classList.remove("figureHidden");
-    } else {
-      figures[i].classList.add("figureHidden");
-    }
-  }
+/*****Création des bouton dynamiquement******/
+
+const btnAll = document.createElement("button"); //premier bouton sans catégorie
+btnAll.textContent = "TOUS";
+btnAll.classList.add("buttons-filtres", "active");
+btnAll.id = 0;
+containerFiltres.appendChild(btnAll);
+/*Boucle for pour creer les bouton par catégorie*/
+function creationButtons() {
+  fetchCategory().then((data) => {
+    console.log(data);
+    data.forEach((category) => {
+      const btn = document.createElement("button");
+      btn.classList.add("buttons-filtres");
+      btn.textContent = category.name;
+      btn.id = category.id;
+      containerFiltres.appendChild(btn);
+      console.log(category.id);
+      console.log(category.name);
+    });
+  });
 }
+creationButtons();

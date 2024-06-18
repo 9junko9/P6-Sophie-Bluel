@@ -211,27 +211,25 @@ nav a {
   text-align: center;
   margin-bottom: 1em;
 }
-.filterGallery {
+.container-filtres {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 15px;
-  margin-bottom: 2em;
+  height: 100px;
 }
-
-.filterGallery-btn {
-  border: 1px solid #1d6154;
-  border-radius: 60px;
-  background-color: transparent;
-  font-family: "Syne";
-  color: #1d6154;
-  font-size: 16px;
+.buttons-filtres {
+  background-color: #fefef8;
   padding: 9px 20px;
+  border: 1px solid #1d6154;
+  border-radius: 25px;
+  color: #1d6154;
   font-weight: 700;
+  font-size: 1.2rem;
+  font-family: Syne;
   cursor: pointer;
 }
-
-.filterGallery-btn:hover,
-.btn-active {
+.active {
   background-color: #1d6154;
   color: white;
 }
@@ -246,9 +244,7 @@ nav a {
 .gallery img {
   width: 100%;
 }
-.figureHidden {
-  display: none;
-}
+
 #contact {
   width: 40%;
   margin: auto;
