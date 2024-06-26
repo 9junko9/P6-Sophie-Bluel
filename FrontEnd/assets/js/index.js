@@ -85,7 +85,26 @@ async function initializeButtons() {
 // Initialisation de l'affichage et de la gestion des boutons
 initializeButtons();
 
-//******Page Log In Connexion*****//
-const form = document.querySelector("form");
-const email = document.getElementById("email");
-const password = document.getElementById("password");
+//*****Si utlilisateur connecté****//
+document.addEventListener("DOMContentLoaded", () => {
+  const loginBtn = document.getElementById("login-btn");
+  const logoutBtn = document.getElementById("logout-btn");
+
+  // Vérifiez si l'utilisateur est connecté
+  const userToken = window.sessionStorage.getItem("token");
+
+  if (userToken) {
+    loginBtn.style.display = "none";
+    logoutBtn.style.display = "block";
+  } else {
+    loginBtn.style.display = "block";
+    logoutBtn.style.display = "none";
+  }
+
+  // Gestion de la déconnexion
+  logoutBtn.addEventListener("click", () => {
+    window.sessionStorage.removeItem("token");
+    window.sessionStorage.removeItem("userId");
+    window.location.href = "login.html";
+  });
+});

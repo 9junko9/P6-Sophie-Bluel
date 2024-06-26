@@ -184,7 +184,9 @@ nav a {
   text-decoration: none;
   color: black;
 }
-
+#logout-btn {
+  display: none;
+}
 #introduction {
   display: flex;
   align-items: center;
