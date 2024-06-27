@@ -60,9 +60,9 @@
       </section>
       <section id="portfolio">
         <h2>Mes Projets</h2>
-        <span class="modifModal">
-          <i class="fa-regular fa-pen-to-square"></i> Modifier</span
-        >
+        <span class="modifModal connected-user" id="modifModalSpan">
+          <i class="fa-regular fa-pen-to-square"></i> Modifier
+        </span>
 
         <div class="container-filtres"></div>
 
@@ -92,12 +92,12 @@
         </ul>
       </nav>
     </footer>
-    <div class="containerModal">
+    <div class="containerModal" id="containerModal">
       <div class="modalGallery">
-        <span><i class="fa-solid fa-xmark"></i></span>
+        <span><i class="fa-solid fa-xmark" id="closeModal"></i></span>
         <h3>Galerie Photo</h3>
         <div class="modalPhoto"></div>
-        <button class="btnModal">Ajouter une photo</button>
+        <button class="btnModal" id="btnCloseModal">Ajouter une photo</button>
       </div>
     </div>
     <script src="./js/index.js"></script>

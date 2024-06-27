@@ -89,6 +89,7 @@ initializeButtons();
 document.addEventListener("DOMContentLoaded", () => {
   const loginBtn = document.getElementById("login-btn");
   const logoutBtn = document.getElementById("logout-btn");
+  const modifModalSpan = document.getElementById("modifModalSpan");
 
   // Vérifiez si l'utilisateur est connecté
   const userToken = window.sessionStorage.getItem("token");
@@ -96,9 +97,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (userToken) {
     loginBtn.style.display = "none";
     logoutBtn.style.display = "block";
+    modifModalSpan.style.display = "inline";
   } else {
     loginBtn.style.display = "block";
     logoutBtn.style.display = "none";
+    modifModalSpan.style.display = "none";
   }
 
   // Gestion de la déconnexion
@@ -107,4 +110,42 @@ document.addEventListener("DOMContentLoaded", () => {
     window.sessionStorage.removeItem("userId");
     window.location.href = "login.html";
   });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  // ... autres initialisations
+
+  const modifModalSpan = document.querySelector(".modifModal");
+
+  modifModalSpan.addEventListener("click", () => {
+    const modal = document.querySelector(".containerModal");
+    modal.style.display = "flex"; // Afficher la modal
+  });
+
+  // ... autres gestionnaires d'événements
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const containerModal = document.getElementById("containerModal");
+  const closeModal = document.getElementById("closeModal");
+  const btnCloseModal = document.getElementById("btnCloseModal");
+
+  // Fermeture de la modal quand on clique sur la croix
+  closeModal.addEventListener("click", function () {
+    containerModal.style.display = "none";
+  });
+
+  // Fermeture de la modal quand on clique en dehors de celle-ci
+  containerModal.addEventListener("click", function (e) {
+    if (e.target === containerModal) {
+      containerModal.style.display = "none";
+    }
+  });
+
+  // Ouverture de la modal (à adapter selon votre besoin)
+  modifModalSpan.addEventListener("click", function () {
+    containerModal.style.display = "flex";
+  });
+
+  // Autres gestionnaires d'événements pour la modal
 });

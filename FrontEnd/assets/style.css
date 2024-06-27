@@ -228,6 +228,9 @@ nav a {
   margin-left: 30px;
   cursor: pointer;
 }
+.connected-user {
+  display: none; /* Initialement caché */
+}
 
 .container-filtres {
   display: flex;
