@@ -210,10 +210,25 @@ nav a {
 #introduction p {
   margin-bottom: 0.5em;
 }
-#portfolio h2 {
+
+#portfolio {
   text-align: center;
-  margin-bottom: 1em;
 }
+
+#portfolio h2 {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 1em;
+  position: relative;
+}
+
+.modifModal {
+  position: absolute;
+  top: 78%;
+  margin-left: 30px;
+  cursor: pointer;
+}
+
 .container-filtres {
   display: flex;
   justify-content: center;
