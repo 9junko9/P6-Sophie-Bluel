@@ -14,17 +14,18 @@ async function fetchCategory() {
 }
 
 //*****Afficher les travaux dans le Dom****//
-async function displayWorks(works) {
-  gallery.innerHTML = ""; // Vider la galerie avant d'afficher les travaux
+async function displayWorks(works, container) {
+  container.innerHTML = ""; // Vider la galerie avant d'afficher les travaux
   works.forEach((element) => {
     const figure = document.createElement("figure");
     const img = document.createElement("img");
     const figcaption = document.createElement("figcaption");
+
     img.src = element.imageUrl;
     figcaption.textContent = element.title;
     figure.appendChild(img);
     figure.appendChild(figcaption);
-    gallery.appendChild(figure);
+    container.appendChild(figure);
   });
 }
 
@@ -34,24 +35,27 @@ async function displayWorks(works) {
 async function initializeButtons() {
   const allWorks = await getWorks();
   const categories = await fetchCategory();
+  const userToken = window.sessionStorage.getItem("token");
+  if (!userToken) {
+    // Création des boutons de filtres...
 
-  // Création du bouton "Tous" et des autres boutons par catégorie
-  const btnAll = document.createElement("button");
-  btnAll.textContent = "Tous";
-  btnAll.classList.add("buttons-filtres", "active");
-  btnAll.id = 0;
-  containerFiltres.appendChild(btnAll);
+    // Création du bouton "Tous" et des autres boutons par catégorie
+    const btnAll = document.createElement("button");
+    btnAll.textContent = "Tous";
+    btnAll.classList.add("buttons-filtres", "active");
+    btnAll.id = 0;
+    containerFiltres.appendChild(btnAll);
 
-  categories.forEach((category, index) => {
-    const btn = document.createElement("button");
-    btn.classList.add("buttons-filtres");
-    btn.textContent = category.name;
-    btn.id = category.id;
-    containerFiltres.appendChild(btn);
-  });
-
+    categories.forEach((category, index) => {
+      const btn = document.createElement("button");
+      btn.classList.add("buttons-filtres");
+      btn.textContent = category.name;
+      btn.id = category.id;
+      containerFiltres.appendChild(btn);
+    });
+  }
   // Affichage initial de tous les travaux
-  displayWorks(allWorks);
+  displayWorks(allWorks, gallery);
 
   // Gestion des clics sur les boutons de filtres
   containerFiltres.addEventListener("click", async (e) => {
@@ -67,22 +71,20 @@ async function initializeButtons() {
     });
 
     if (btnId === "0") {
-      // Afficher tous les travaux
-      displayWorks(allWorks);
+      displayWorks(allWorks, gallery);
     } else {
-      // Filtrer et afficher les travaux par catégorie
+      //****Filtrer et afficher les travaux par catégorie******//
       const galleryTriCategory = allWorks.filter(
         (choice) => choice.categoryId == btnId
       );
-      displayWorks(galleryTriCategory);
+      displayWorks(galleryTriCategory, gallery);
     }
 
-    // Ajouter la classe active au bouton cliqué
+    //*****Ajouter la classe active au bouton cliqué*****//
     e.target.classList.add("active");
   });
 }
 
-// Initialisation de l'affichage et de la gestion des boutons
 initializeButtons();
 
 //*****Si utlilisateur connecté****//
@@ -91,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const logoutBtn = document.getElementById("logout-btn");
   const modifModalSpan = document.getElementById("modifModalSpan");
 
-  // Vérifiez si l'utilisateur est connecté
+  // ****Vérifiez si l'utilisateur est connecté******//
   const userToken = window.sessionStorage.getItem("token");
 
   if (userToken) {
@@ -104,48 +106,20 @@ document.addEventListener("DOMContentLoaded", () => {
     modifModalSpan.style.display = "none";
   }
 
-  // Gestion de la déconnexion
+  //****Gestion de la déconnexion********//
   logoutBtn.addEventListener("click", () => {
     window.sessionStorage.removeItem("token");
     window.sessionStorage.removeItem("userId");
     window.location.href = "login.html";
   });
 });
-
-document.addEventListener("DOMContentLoaded", () => {
-  // ... autres initialisations
-
-  const modifModalSpan = document.querySelector(".modifModal");
-
-  modifModalSpan.addEventListener("click", () => {
-    const modal = document.querySelector(".containerModal");
-    modal.style.display = "flex"; // Afficher la modal
-  });
-
-  // ... autres gestionnaires d'événements
-});
-
 document.addEventListener("DOMContentLoaded", function () {
-  const containerModal = document.getElementById("containerModal");
-  const closeModal = document.getElementById("closeModal");
-  const btnCloseModal = document.getElementById("btnCloseModal");
+  const token = window.sessionStorage.getItem("token");
 
-  // Fermeture de la modal quand on clique sur la croix
-  closeModal.addEventListener("click", function () {
-    containerModal.style.display = "none";
-  });
-
-  // Fermeture de la modal quand on clique en dehors de celle-ci
-  containerModal.addEventListener("click", function (e) {
-    if (e.target === containerModal) {
-      containerModal.style.display = "none";
-    }
-  });
-
-  // Ouverture de la modal (à adapter selon votre besoin)
-  modifModalSpan.addEventListener("click", function () {
-    containerModal.style.display = "flex";
-  });
-
-  // Autres gestionnaires d'événements pour la modal
+  if (token) {
+    const banner = document.createElement("div");
+    banner.classList.add("banner");
+    banner.textContent = " Mode édition";
+    document.body.appendChild(banner);
+  }
 });

@@ -1,8 +1,3 @@
-/* http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
 html,
 body,
 div,
@@ -137,11 +132,7 @@ body {
 header {
   display: flex;
   justify-content: space-between;
-  margin: 50px 0;
-}
-
-section {
-  margin: 50px 0;
+  margin: 59px 0;
 }
 
 h1 {
@@ -184,12 +175,18 @@ nav a {
   text-decoration: none;
   color: black;
 }
+
+nav ul li a img {
+  width: 22px;
+  height: auto;
+}
 #logout-btn {
   display: none;
 }
 #introduction {
   display: flex;
   align-items: center;
+  margin-bottom: 139px;
 }
 #introduction figure {
   flex: 1;
@@ -214,6 +211,13 @@ nav a {
 #portfolio {
   text-align: center;
 }
+.title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+}
 
 #portfolio h2 {
   display: inline-flex;
@@ -224,12 +228,11 @@ nav a {
 
 .modifModal {
   position: absolute;
-  top: 78%;
+  top: 48%;
   margin-left: 30px;
   cursor: pointer;
-}
-.connected-user {
-  display: none; /* Initialement caché */
+  cursor: pointer;
+  display: none;
 }
 
 .container-filtres {
@@ -260,6 +263,7 @@ nav a {
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
+  margin-bottom: 79px;
 }
 
 .gallery img {
@@ -281,6 +285,7 @@ nav a {
   margin-top: 30px;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 #contact input {
@@ -313,39 +318,61 @@ input[type="submit"] {
   text-align: center;
   border-radius: 60px;
 }
-
+#contact input[type="submit"]:hover {
+  background-color: #0e2f28;
+  cursor: pointer;
+}
 .containerModal {
   display: none;
   justify-content: center;
   align-items: center;
-  position: fixed; /* Fixe l'élément par rapport à la fenêtre de visualisation */
-  top: 50%; /* Centre verticalement */
-  left: 50%; /* Centre horizontalement */
-  transform: translate(-50%, -50%); /* Ajuste la position pour centrer */
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
-  z-index: 1000; /* Assure que l'élément soit au-dessus de tous les autres */
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.5
-  ); /* Couleur de fond semi-transparente pour l'effet overlay */
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
 }
-.modalGallery {
-  background-color: white;
+.containerModalGallery {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  height: 80%;
+  width: 70%;
+
+  margin-bottom: 46px;
+  z-index: 5;
+}
+.modalGallery {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-  border-radius: 5px;
-  width: 32%;
-  height: 66%;
+  justify-content: space-between;
+  background-color: white;
+  border-radius: 10px;
+  width: 630px;
+  height: 688px;
   position: relative;
   min-height: 500px;
   min-width: 300px;
-  position: relative;
+  z-index: 5;
+}
+
+.modalPhoto {
+  width: 420px;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 20px;
+}
+
+.modalPhoto img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
 .fa-xmark {
@@ -355,21 +382,248 @@ input[type="submit"] {
   font-size: 1.5rem;
   cursor: pointer;
 }
+.titleModale {
+  position: relative;
+  font-size: 26px;
+  font-family: "Work Sans";
+  color: #000;
+  text-align: center;
+  display: inline-block;
+  margin-bottom: 46px;
+  margin-top: 60px;
+}
 
 .btnModal {
   font-family: "Syne";
   font-weight: 700;
   color: white;
   background-color: #1d6154;
-  margin: 2em auto;
-  width: 180px;
+  width: 237px;
+  height: 36px;
+
   text-align: center;
   border-radius: 60px;
   cursor: pointer;
+  align-self: center;
+  margin-top: auto;
+  position: relative;
+  bottom: 47px;
+}
+.btnModal::before {
+  content: "";
+  position: absolute;
+  bottom: calc(100% + 36px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 420px;
+  height: 1px;
+  background-color: #b3b3b3;
+}
+.modalPhoto-figure {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
 }
 
+.delete-icon {
+  position: absolute;
+  top: 6px;
+  right: 3px;
+  font-size: 0.8em;
+  color: white;
+  background-color: black;
+  padding: 3px;
+  border-radius: 2px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.modalAddWorks {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  position: fixed;
+  width: 630px;
+  height: 688px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  min-width: 300px;
+  min-height: 500px;
+  margin: 0;
+}
+
+.arrow-left {
+  position: absolute;
+  top: 30px;
+  left: 15px;
+
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.xmark {
+  position: absolute;
+  top: 30px;
+  right: 15px;
+
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+h3 {
+  margin-top: 60px;
+
+  font-size: 1.5rem;
+}
+form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 80%;
+  width: 80%;
+  gap: 25px;
+}
+.containerAddPhoto {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 30%;
+  background-color: #e8f1f6;
+  gap: 10px;
+}
+.containerAddPhoto img {
+  display: none;
+  width: 30%;
+  height: 100%;
+  z-index: 2;
+  position: absolute;
+}
+.fa-image {
+  font-size: 4rem;
+  color: #b9c5cc;
+}
+.labelFile {
+  display: block;
+  display: flex;
+  align-items: center;
+  background-color: #b9c5cc;
+  border-radius: 15px;
+  height: 30px;
+  padding: 0 20px;
+  color: #306685;
+  cursor: pointer;
+}
+
+#title {
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  height: 8%;
+  opacity: 1;
+}
+#categoryInput {
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  height: 8%;
+}
+.container-button-add-work {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100%;
+  border-top: 1px solid gray;
+}
+.buttonValidForm {
+  background-color: #1d6154;
+  padding: 9px 50px;
+  border-radius: 25px;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  font-family: Syne;
+  cursor: pointer;
+}
+
+.button-add-work {
+  background-color: #1d6154;
+  padding: 9px 50px;
+  border-radius: 25px;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  font-family: Syne;
+  cursor: pointer;
+}
+
+.inputOpac {
+  opacity: 0;
+}
+.modalAddWorks #title {
+  height: 30px;
+  font-size: 14px;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  padding: 10px;
+  margin-bottom: 1em;
+}
+.modalAddWorks #categoryInput {
+  height: 45px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  padding: 10px;
+  margin-bottom: 1em;
+  background-color: #fff;
+}
+.modalAddWorks label {
+  text-align: left;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 2;
+  display: none;
+}
+.banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 45px;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+
+  z-index: 3;
+  margin-bottom: 59px;
+}
+.banner::before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f044";
+  margin-right: 10px;
+}
 footer nav ul {
   display: flex;
   justify-content: flex-end;
   margin: 0.8em;
+}
+
+@media screen and (min-width: 375px) {
+  .modifModal {
+    display: inline-block;
+    position: relative;
+    left: auto;
+  }
 }
