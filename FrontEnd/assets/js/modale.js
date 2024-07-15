@@ -142,6 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   //****Gestion du formulaire d'ajout de travail****//
+  //déclenchée lorsque l'utilisateur soumet le formulaire pour ajouter un nouveau travail à la galerie.
   formAddWorks.addEventListener("submit", async (e) => {
     e.preventDefault();
     const formData = new FormData(formAddWorks);

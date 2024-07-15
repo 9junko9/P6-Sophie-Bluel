@@ -6,7 +6,8 @@ const password = document.getElementById("password");
 //*****reprise via inputs email et mots de passe*****//
 
 form.addEventListener("submit", (e) => {
-  e.preventDefault();
+  e.preventDefault(); //Empêche l'envoi traditionnel du formulaire
+  // Reste du code de gestion de la soumission du formulaire...
   const userEmail = email.value;
   const userPassword = password.value;
   const login = {
@@ -35,6 +36,7 @@ form.addEventListener("submit", (e) => {
       return response.json();
     })
     .then((data) => {
+      //Récupération des données de la réponse (comme le token et l'ID de l'utilisateur)
       const userId = data.userId;
       const userToken = data.token;
       window.sessionStorage.setItem("token", userToken);
